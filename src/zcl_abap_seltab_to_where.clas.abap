@@ -56,7 +56,6 @@ CLASS zcl_abap_seltab_to_where DEFINITION
         !it_named_seltabs TYPE tt_named_seltables
         !iv_client_field  TYPE string OPTIONAL
         !if_null_handle   TYPE rs_bool DEFAULT abap_true
-        !iv_abap_or_amdp  TYPE char4 DEFAULT 'ABAP'
       RETURNING
         VALUE(rv_where)   TYPE string
       RAISING
@@ -95,7 +94,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_abap_seltab_to_where IMPLEMENTATION.
+CLASS ZCL_ABAP_SELTAB_TO_WHERE IMPLEMENTATION.
 
 
   METHOD combine_seltabs.
@@ -119,18 +118,18 @@ CLASS zcl_abap_seltab_to_where IMPLEMENTATION.
       IF <fs_seltab> IS NOT INITIAL.
         lr_seltab = zcl_abap_seltab_to_where=>new( <fs_seltab> ).
         IF rv_where IS NOT INITIAL.
-          rv_where = |{ rv_where }{ lv_sep } ( { lr_seltab->sql_where_condition( ls_seltab-name ) } ) |.
-          lv_sep = ' AND '.
+          rv_where = |{ rv_where }{ lv_sep }( { lr_seltab->sql_where_condition( ls_seltab-name ) } )|.
+          lv_sep = ` AND `.
         ELSE.
           rv_where = |( { lr_seltab->sql_where_condition( ls_seltab-name ) } )|.
-          lv_sep = ' AND '.
+          lv_sep = ` AND `.
         ENDIF.
       ENDIF.
 
     ENDLOOP.
 
 *added on 1/28/2019
-    CONDENSE rv_where.
+*    CONDENSE rv_where.
 
   ENDMETHOD.
 
@@ -251,7 +250,7 @@ CLASS zcl_abap_seltab_to_where IMPLEMENTATION.
     IF lv_include IS NOT INITIAL AND lv_exclude IS NOT INITIAL.
       rv_cond = |( { lv_include } ) AND NOT ( { lv_exclude } )|.
     ELSEIF lv_exclude IS NOT INITIAL.
-      rv_cond = | NOT ({ lv_exclude } )|.
+      rv_cond = |NOT ( { lv_exclude } )|.
     ELSEIF lv_include IS NOT INITIAL.
       rv_cond = lv_include.
     ELSE.
@@ -299,7 +298,7 @@ CLASS zcl_abap_seltab_to_where IMPLEMENTATION.
 
       IF <sign> = iv_sign.
 
-        IF sy-tabix > 1. rv_cond = |{ rv_cond } |. ENDIF.
+        IF sy-tabix > 1. rv_cond = |{ rv_cond }|. ENDIF.
 
         IF _mv_clike = abap_true.
           "Escape special chars (ATTENTION: the correct sequence is important!)"
@@ -330,10 +329,10 @@ CLASS zcl_abap_seltab_to_where IMPLEMENTATION.
           REPLACE ALL OCCURRENCES OF |EQ ''| IN lv_op WITH |EQ '' OR { iv_field } IS NULL|.
         ENDIF.
 
-        lv_line = |{ iv_field } { lv_op } |.
+        lv_line = |{ iv_field } { lv_op }|.
 
-        rv_cond = | { rv_cond }{ lv_sep } { lv_bracket_left }{ lv_line }{ lv_bracket_right } |.
-        lv_sep = ' OR'.
+        rv_cond = |{ rv_cond }{ lv_sep }{ lv_bracket_left }{ lv_line }{ lv_bracket_right }|.
+        lv_sep = ` OR `.
       ENDIF.
     ENDLOOP.
 

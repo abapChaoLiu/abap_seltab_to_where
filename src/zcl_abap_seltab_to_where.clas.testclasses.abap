@@ -46,6 +46,7 @@ CLASS zcl_abap_ut_seltab_to_where DEFINITION
     METHODS: combine_seltabs_07 FOR TESTING.
     METHODS: combine_seltabs_08 FOR TESTING.
     METHODS: combine_seltabs_09 FOR TESTING.
+    METHODS: combine_seltabs_10 FOR TESTING.
 *    METHODS: combine_seltabs_07 FOR TESTING.
 ENDCLASS.       "zcl_abap_ut_seltab_to_where
 
@@ -135,7 +136,7 @@ CLASS zcl_abap_ut_seltab_to_where IMPLEMENTATION.
     READ TABLE lt_seltab WITH KEY name = 'CARRID' ASSIGNING <ls_seltab>.
     IF sy-subrc = 0.
       lt_rng_carrid = VALUE #( sign = 'I' option = 'EQ' ( low = 'PDB' ) ).
-      GET  REFERENCE OF lt_rng_carrid INTO <ls_seltab>-dref.
+       <ls_seltab>-dref = ref #( lt_rng_carrid ).
     ENDIF.
 
     lv_where_tgt = zcl_abap_seltab_to_where=>combine_seltabs(
@@ -171,7 +172,7 @@ CLASS zcl_abap_ut_seltab_to_where IMPLEMENTATION.
     READ TABLE lt_seltab WITH KEY name = 'CARRID' ASSIGNING <ls_seltab>.
     IF sy-subrc = 0.
       lt_rng_carrid = VALUE #( sign = 'I' option = 'NE' ( low = 'PDB' ) ).
-      GET  REFERENCE OF lt_rng_carrid INTO <ls_seltab>-dref.
+      <ls_seltab>-dref = ref #( lt_rng_carrid ).
     ENDIF.
 
     lv_where_tgt = zcl_abap_seltab_to_where=>combine_seltabs(
@@ -207,7 +208,7 @@ CLASS zcl_abap_ut_seltab_to_where IMPLEMENTATION.
     READ TABLE lt_seltab WITH KEY name = 'CARRID' ASSIGNING <ls_seltab>.
     IF sy-subrc = 0.
       lt_rng_carrid = VALUE #( sign = 'E' option = 'EQ' ( low = 'PDB' ) ).
-      GET  REFERENCE OF lt_rng_carrid INTO <ls_seltab>-dref.
+      <ls_seltab>-dref = ref #( lt_rng_carrid ).
     ENDIF.
 
     lv_where_tgt = zcl_abap_seltab_to_where=>combine_seltabs(
@@ -243,7 +244,7 @@ CLASS zcl_abap_ut_seltab_to_where IMPLEMENTATION.
     READ TABLE lt_seltab WITH KEY name = 'CARRID' ASSIGNING <ls_seltab>.
     IF sy-subrc = 0.
       lt_rng_carrid = VALUE #( sign = 'I' option = 'EQ' ( low = '' ) ).
-      GET  REFERENCE OF lt_rng_carrid INTO <ls_seltab>-dref.
+      <ls_seltab>-dref = ref #( lt_rng_carrid ).
     ENDIF.
 
     lv_where_tgt = zcl_abap_seltab_to_where=>combine_seltabs(
@@ -282,13 +283,13 @@ CLASS zcl_abap_ut_seltab_to_where IMPLEMENTATION.
     READ TABLE lt_seltab WITH KEY name = 'CARRID' ASSIGNING <ls_seltab>.
     IF sy-subrc = 0.
       lt_rng_carrid = VALUE #( sign = 'I' option = 'EQ' ( low = '' ) ).
-      GET  REFERENCE OF lt_rng_carrid INTO <ls_seltab>-dref.
+      <ls_seltab>-dref = ref #( lt_rng_carrid ).
     ENDIF.
 
     READ TABLE lt_seltab WITH KEY name = 'CONNID' ASSIGNING <ls_seltab>.
     IF sy-subrc = 0.
       lt_rng_connid = VALUE #( sign = 'I' option = 'EQ' ( low = '0820' ) ).
-      GET  REFERENCE OF lt_rng_connid INTO <ls_seltab>-dref.
+      <ls_seltab>-dref = ref #( lt_rng_connid ).
     ENDIF.
 
     lv_where_tgt = zcl_abap_seltab_to_where=>combine_seltabs(
@@ -328,13 +329,13 @@ CLASS zcl_abap_ut_seltab_to_where IMPLEMENTATION.
     IF sy-subrc = 0.
       lt_rng_carrid = VALUE #( sign = 'I' option = 'EQ' ( low = 'AC' )
                                                         ( low = 'LH' ) ).
-      GET  REFERENCE OF lt_rng_carrid INTO <ls_seltab>-dref.
+      <ls_seltab>-dref = ref #( lt_rng_carrid ).
     ENDIF.
 
     READ TABLE lt_seltab WITH KEY name = 'CONNID' ASSIGNING <ls_seltab>.
     IF sy-subrc = 0.
       lt_rng_connid = VALUE #( sign = 'I' option = 'EQ' ( low = '0820' ) ).
-      GET  REFERENCE OF lt_rng_connid INTO <ls_seltab>-dref.
+      <ls_seltab>-dref = ref #( lt_rng_connid ).
     ENDIF.
 
     lv_where_tgt = zcl_abap_seltab_to_where=>combine_seltabs(
@@ -355,7 +356,7 @@ CLASS zcl_abap_ut_seltab_to_where IMPLEMENTATION.
           lt_sfl_src    TYPE STANDARD TABLE OF sflight,
           lt_sfl_tgt    TYPE STANDARD TABLE OF sflight,
           lt_rng_fldate TYPE RANGE OF sflight-fldate.
-          .
+    .
     DATA: lt_seltab LIKE mt_seltab.
 
     FIELD-SYMBOLS: <ls_seltab>  TYPE zcl_abap_seltab_to_where=>ts_named_seltable,
@@ -372,7 +373,7 @@ CLASS zcl_abap_ut_seltab_to_where IMPLEMENTATION.
     READ TABLE lt_seltab WITH KEY name = 'FLDATE' ASSIGNING <ls_seltab>.
     IF sy-subrc = 0.
       lt_rng_fldate = VALUE #( sign = 'I' option = 'EQ' ( low = '20190319' ) ).
-      GET  REFERENCE OF lt_rng_fldate INTO <ls_seltab>-dref.
+      <ls_seltab>-dref = ref #( lt_rng_fldate ).
     ENDIF.
 
 
@@ -397,7 +398,7 @@ CLASS zcl_abap_ut_seltab_to_where IMPLEMENTATION.
           lt_sfl_src    TYPE STANDARD TABLE OF sflight,
           lt_sfl_tgt    TYPE STANDARD TABLE OF sflight,
           lt_rng_fldate TYPE RANGE OF sflight-fldate.
-          .
+    .
     DATA: lt_seltab LIKE mt_seltab.
 
     FIELD-SYMBOLS: <ls_seltab>  TYPE zcl_abap_seltab_to_where=>ts_named_seltable,
@@ -414,7 +415,7 @@ CLASS zcl_abap_ut_seltab_to_where IMPLEMENTATION.
     READ TABLE lt_seltab WITH KEY name = 'FLDATE' ASSIGNING <ls_seltab>.
     IF sy-subrc = 0.
       lt_rng_fldate = VALUE #( sign = 'I' option = 'BT' ( low = '20190319' high = '20191231' ) ).
-      GET  REFERENCE OF lt_rng_fldate INTO <ls_seltab>-dref.
+       <ls_seltab>-dref = ref #( lt_rng_fldate ).
     ENDIF.
 
 
@@ -432,15 +433,15 @@ CLASS zcl_abap_ut_seltab_to_where IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD combine_seltabs_09.
-    DATA: lv_where_src  TYPE string,
-          lv_where_tgt  TYPE string,
-          lt_sfl_src    TYPE STANDARD TABLE OF sflight,
-          lt_sfl_tgt    TYPE STANDARD TABLE OF sflight,
-          lt_rng_carrid TYPE RANGE OF sflight-carrid,
-          lt_rng_connid TYPE RANGE OF sflight-connid,
-          lt_rng_CURRENCY TYPE RANGE OF sflight-CURRENCY,
-          lt_rng_fldate TYPE RANGE OF sflight-fldate.
-          .
+    DATA: lv_where_src    TYPE string,
+          lv_where_tgt    TYPE string,
+          lt_sfl_src      TYPE STANDARD TABLE OF sflight,
+          lt_sfl_tgt      TYPE STANDARD TABLE OF sflight,
+          lt_rng_carrid   TYPE RANGE OF sflight-carrid,
+          lt_rng_connid   TYPE RANGE OF sflight-connid,
+          lt_rng_currency TYPE RANGE OF sflight-currency,
+          lt_rng_fldate   TYPE RANGE OF sflight-fldate.
+    .
     DATA: lt_seltab LIKE mt_seltab.
 
     FIELD-SYMBOLS: <ls_seltab>  TYPE zcl_abap_seltab_to_where=>ts_named_seltable,
@@ -449,40 +450,23 @@ CLASS zcl_abap_ut_seltab_to_where IMPLEMENTATION.
 
 **********************************************************************
 *Test Case 9.
-*Complex conditions
+*include wildcard characters
 **********************************************************************
     lt_seltab = mt_seltab.
-    lv_where_src = |( CARRID EQ 'LH' OR CARRID EQ 'AC' )|.
-    lv_where_src = |{ lv_where_src } AND ( CONNID NE '1111' ) AND ( FLDATE BETWEEN '20190319' AND '20191231' )|.
-    lv_where_src = |{ lv_where_src } AND ( NOT ( CURRENCY NE 'USD' ) )|.
+    lv_where_src = |( CARRID LIKE 'L%' )|.
+    lv_where_src = |{ lv_where_src } AND ( CURRENCY NOT LIKE 'US_' )|.
+
 
     READ TABLE lt_seltab WITH KEY name = 'CARRID' ASSIGNING <ls_seltab>.
     IF sy-subrc = 0.
-      lt_rng_carrid = VALUE #( sign = 'I' option = 'EQ' ( low = 'LH' )
-                                                        ( low = 'AC' ) ).
-      GET  REFERENCE OF lt_rng_carrid INTO <ls_seltab>-dref.
+      lt_rng_carrid = VALUE #( sign = 'I' option = 'CP' ( low = 'L*' ) ).
+      <ls_seltab>-dref = ref #( lt_rng_carrid ).
     ENDIF.
 
     READ TABLE lt_seltab WITH KEY name = 'CURRENCY' ASSIGNING <ls_seltab>.
     IF sy-subrc = 0.
-      lt_rng_CURRENCY = VALUE #( sign = 'E' option = 'NE' ( low = 'USD' ) ).
-      GET  REFERENCE OF lt_rng_CURRENCY INTO <ls_seltab>-dref.
-    ENDIF.
-
-
-
-    READ TABLE lt_seltab WITH KEY name = 'CONNID' ASSIGNING <ls_seltab>.
-    IF sy-subrc = 0.
-      lt_rng_CONNID = VALUE #( sign = 'I' option = 'NE' ( low = '1111' ) ).
-      GET  REFERENCE OF lt_rng_connid INTO <ls_seltab>-dref.
-    ENDIF.
-
-
-
-    READ TABLE lt_seltab WITH KEY name = 'FLDATE' ASSIGNING <ls_seltab>.
-    IF sy-subrc = 0.
-      lt_rng_fldate = VALUE #( sign = 'I' option = 'BT' ( low = '20190319' high = '20191231' ) ).
-      GET  REFERENCE OF lt_rng_fldate INTO <ls_seltab>-dref.
+      lt_rng_currency = VALUE #( sign = 'I' option = 'NP' ( low = 'US+' ) ).
+       <ls_seltab>-dref = ref #( lt_rng_currency ).
     ENDIF.
 
 
@@ -498,6 +482,78 @@ CLASS zcl_abap_ut_seltab_to_where IMPLEMENTATION.
     ).
 
   ENDMETHOD.
+
+  METHOD combine_seltabs_10.
+    DATA: lv_where_src    TYPE string,
+          lv_where_tgt    TYPE string,
+          lt_sfl_src      TYPE STANDARD TABLE OF sflight,
+          lt_sfl_tgt      TYPE STANDARD TABLE OF sflight,
+          lt_rng_carrid   TYPE RANGE OF sflight-carrid,
+          lt_rng_connid   TYPE RANGE OF sflight-connid,
+          lt_rng_currency TYPE RANGE OF sflight-currency,
+          lt_rng_fldate   TYPE RANGE OF sflight-fldate.
+    .
+    DATA: lt_seltab LIKE mt_seltab.
+
+    FIELD-SYMBOLS: <ls_seltab>  TYPE zcl_abap_seltab_to_where=>ts_named_seltable,
+                   <lt_sfl_src> TYPE STANDARD TABLE,
+                   <lt_sfl_tgt> TYPE STANDARD TABLE.
+
+**********************************************************************
+*Test Case 10.
+*Complex conditions
+**********************************************************************
+    lt_seltab = mt_seltab.
+    lv_where_src = |( CARRID EQ 'LH' OR CARRID EQ 'AC' OR CARRID LIKE 'L%' )|.
+    lv_where_src = |{ lv_where_src } AND ( CONNID NE '1111' )|.
+    lv_where_src = |{ lv_where_src } AND ( FLDATE BETWEEN '20190319' AND '20191231' )|.
+    lv_where_src = |{ lv_where_src } AND ( ( CURRENCY NOT LIKE 'AB_' ) AND NOT ( CURRENCY NE 'USD' ) )|.
+
+    READ TABLE lt_seltab WITH KEY name = 'CARRID' ASSIGNING <ls_seltab>.
+    IF sy-subrc = 0.
+      lt_rng_carrid = VALUE #( ( sign = 'I' option = 'EQ'  low = 'LH' )
+                               ( sign = 'I' option = 'EQ'  low = 'AC' )
+                               ( sign = 'I' option = 'CP'  low = 'L*' ) ).
+      <ls_seltab>-dref = ref #( lt_rng_carrid ).
+    ENDIF.
+
+    READ TABLE lt_seltab WITH KEY name = 'CURRENCY' ASSIGNING <ls_seltab>.
+    IF sy-subrc = 0.
+      lt_rng_currency = VALUE #( ( sign = 'I' option = 'NP'  low = 'AB+' )
+                                 ( sign = 'E' option = 'NE'  low = 'USD' ) ).
+      <ls_seltab>-dref = ref #( lt_rng_currency ).
+    ENDIF.
+
+
+
+    READ TABLE lt_seltab WITH KEY name = 'CONNID' ASSIGNING <ls_seltab>.
+    IF sy-subrc = 0.
+      lt_rng_connid = VALUE #( sign = 'I' option = 'NE' ( low = '1111' ) ).
+       <ls_seltab>-dref = ref #( lt_rng_connid ).
+    ENDIF.
+
+
+
+    READ TABLE lt_seltab WITH KEY name = 'FLDATE' ASSIGNING <ls_seltab>.
+    IF sy-subrc = 0.
+      lt_rng_fldate = VALUE #( sign = 'I' option = 'BT' ( low = '20190319' high = '20191231' ) ).
+      <ls_seltab>-dref = ref #( lt_rng_fldate ).
+    ENDIF.
+
+
+    lv_where_tgt = zcl_abap_seltab_to_where=>combine_seltabs(
+                         it_named_seltabs  = lt_seltab
+                         )
+                         .
+
+    cl_aunit_assert=>assert_equals(
+      exp = lv_where_src
+      act = lv_where_tgt
+      msg = |SRC: { lv_where_src }, TGT: { lv_where_tgt }.|
+    ).
+
+  ENDMETHOD.
+
 
   METHOD setup.
 *      .
