@@ -1,6 +1,6 @@
-## seltab_to_where
+# seltab_to_where
 Convert ABAP selection range tables to an SQL where clause
-# Simple Demo
+## Simple Demo
 ```
 REPORT ZR_DEMO_SELTAB_TO_WHERE.
 
@@ -16,5 +16,5 @@ data: lt_seltab  TYPE zcl_abap_seltab_to_where=>tt_named_seltables,
 
 write: lv_where.
 ```
-# Credits and references
+## Credits and references
 Class `ZCL_ABAP_SELTAB_TO_WHERE` is modified from class `CL_SHDB_SELTAB` (More detail can be found in this post https://blogs.sap.com/2015/03/30/handling-of-select-options-parameters-within-amdp/). 
