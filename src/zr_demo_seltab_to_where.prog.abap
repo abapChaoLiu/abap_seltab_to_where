@@ -3,17 +3,17 @@
 *&---------------------------------------------------------------------*
 *&
 *&---------------------------------------------------------------------*
-REPORT ZR_DEMO_SELTAB_TO_WHERE.
+REPORT zr_demo_seltab_to_where.
 
-data: lt_seltab  TYPE zcl_abap_seltab_to_where=>tt_named_seltables,
+DATA: lt_seltab     TYPE zcl_abap_seltab_to_where=>tt_named_seltables,
       lt_rng_carrid TYPE RANGE OF sflight-carrid.
 
-      lt_rng_carrid = VALUE #( sign = 'I' option = 'EQ' ( low = 'ABC' ) ).
+lt_rng_carrid = VALUE #( sign = 'I' option = 'EQ' ( low = 'ABC' ) ).
 
-      lt_seltab = value #( ( name = 'CARRID' dref = ref #( lt_rng_carrid ) ) ).
+lt_seltab = VALUE #( ( name = 'CARRID' dref = REF #( lt_rng_carrid ) ) ).
 
-      data(lv_where) = zcl_abap_seltab_to_where=>combine_seltabs(
-                         it_named_seltabs  = lt_seltab
-                         ).
+DATA(lv_where) = zcl_abap_seltab_to_where=>combine_seltabs(
+                   it_named_seltabs  = lt_seltab
+                   ).
 
-write: lv_where.
+WRITE: lv_where.
