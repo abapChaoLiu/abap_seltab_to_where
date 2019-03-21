@@ -1,4 +1,4 @@
-# seltab_to_where
+## seltab_to_where
 Convert ABAP selection range tables to an SQL where clause
 # Simple Demo
 ```
