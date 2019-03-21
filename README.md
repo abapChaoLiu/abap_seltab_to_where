@@ -1,7 +1,7 @@
 # abap_seltab_to_where
 Convert ABAP selection range tables to an SQL where clause.
 ## Simple Demo
-```
+```abap
 REPORT ZR_DEMO_SELTAB_TO_WHERE.
 
 data: lt_seltab  TYPE zcl_abap_seltab_to_where=>tt_named_seltables,
