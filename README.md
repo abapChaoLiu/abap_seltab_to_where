@@ -22,4 +22,4 @@ write: lv_where_clause.
 ## Credits and references
 Class `ZCL_ABAP_SELTAB_TO_WHERE` is modified from class `CL_SHDB_SELTAB` (More detail can be found in this post https://blogs.sap.com/2015/03/30/handling-of-select-options-parameters-within-amdp/). 
 
-## Let's make ABAP great again!
+## Let's make ABAP great again! ;)
