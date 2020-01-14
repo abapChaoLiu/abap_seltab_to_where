@@ -1,0 +1,15 @@
+name: abapLint
+
+on: 
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  abapLint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: abapLint
+        uses: abaplint/actions-abaplint@master
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
