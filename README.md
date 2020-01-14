@@ -1,3 +1,5 @@
+![Build Status](https://github.com/abapChaoLiu/abap_seltab_to_where/workflows/abapLint/badge.svg)
+
 # abap_seltab_to_where
 Convert ABAP selection range tables to a SQL where clause.
 ## Simple Demo
