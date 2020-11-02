@@ -18,9 +18,9 @@ data: lt_seltab  TYPE zcl_abap_seltab_to_where=>tt_named_seltables,
 
 write: lv_where_clause.
 
-"--------- OUTPUT ---------------
-( CARRID EQ 'ABC' )
-"--------- OUTPUT ---------------
+" --------- OUTPUT ---------------
+" ( CARRID EQ 'ABC' )
+" --------- OUTPUT ---------------
 ```
 ## Demo 2
 ```abap
@@ -44,9 +44,9 @@ data: lt_seltab  TYPE zcl_abap_seltab_to_where=>tt_named_seltables,
 
 write: lv_where_clause.
 
-"--------- OUTPUT ---------------
-( CARRID EQ 'ABC' OR CARRID EQ 'DEF' ) AND ( FLDATE BETWEEN '20200101' AND '20201231' )
-"--------- OUTPUT ---------------
+" --------- OUTPUT ---------------
+" ( CARRID EQ 'ABC' OR CARRID EQ 'DEF' ) AND ( FLDATE BETWEEN '20200101' AND '20201231' )
+" --------- OUTPUT ---------------
 ```
 
 ## PR is welcome!
