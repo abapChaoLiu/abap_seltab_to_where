@@ -17,8 +17,9 @@ data: lt_seltab  TYPE zcl_abap_seltab_to_where=>tt_named_seltables,
                               it_named_seltabs  = lt_seltab          ).
 
 write: lv_where_clause.
+"OUTPUT--->: ( CARRID EQ 'ABC' )
 ```
-OUTPUT: ( CARRID EQ 'ABC' )
+
 
 
 ## PR is welcome!
