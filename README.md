@@ -18,6 +18,9 @@ data: lt_seltab  TYPE zcl_abap_seltab_to_where=>tt_named_seltables,
 
 write: lv_where_clause.
 ```
+OUTPUT: ( CARRID EQ 'ABC' )
+
+
 ## PR is welcome!
 - Unit Test class is provided. Feel free to add more test cases.
 
